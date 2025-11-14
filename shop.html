@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>COOL ZONE - VIP </title>
+  <style>
+    /* === GLOBAL STYLES === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #BA8FFA;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 40px;
+      /* richer multi-stop gradient and larger background so it can animate */
+      background: linear-gradient(90deg, #4B0082, #4B0082, #4B0082, #4B0082, #4B0082);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: hueShift 6s linear infinite, glowText 2.6s ease-in-out infinite alternate;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+    }
+
+    @keyframes glowText {
+        0% {
+          text-shadow: 0 0 6px rgba(119, 0, 255, 0.9), 0 0 18px rgba(98, 0, 255, 0.7);
+          transform: translateY(0);
+        }
+        50% {
+          text-shadow: 0 0 14px rgba(102, 0, 255, 0.95), 0 0 30px rgba(89, 0, 255, 0.6);
+          transform: translateY(-3px);
+        }
+        100% {
+          text-shadow: 0 0 8px rgba(55, 0, 255, 0.85), 0 0 18px rgba(76, 0, 255, 0.55);
+          transform: translateY(0);
+        }
+    }
+
+      /* Smooth gradient movement across the text */
+      @keyframes hueShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+    .shop-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    /* === ROLE CARDS === */
+    .role-card {
+      background: linear-gradient(145deg, #C3B1E1, #C3B1E1 );
+      border: 1px solid #4B0082;
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 15px rgba(46, 4, 66, 0.05);
+      transition: all 0.4s ease;
+      transform: scale(1);
+    }
+
+    .role-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(153, 0, 255, 0.1);
+    }
+
+    .role-card h2 {
+      font-size: 1.8em;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .gold-role { color: #ffd900; }
+    .diamond-role { color: #00eaff; }
+    .premium-role { color: #e100ff; }
+    .luxury-role { color: #ff0000; }
+
+    .role-card ul {
+      list-style: none;
+      text-align: left;
+      margin: 15px 0;
+      padding-left: 10px;
+      line-height: 1.7em;
+      color: #4B0082;
+    }
+
+    .role-card ul li::before {
+      content: "★";
+      color: #ffd700;
+      margin-right: 8px;
+    }
+
+    .role-card p {
+      font-size: 1.1em;
+      font-weight: 500;
+      margin-top: 10px;
+      color: #4B0082;
+    }
+
+    /* === BUTTONS === */
+    .buy-btn {
+      background: linear-gradient(135deg, #ffffff, #ffffff);
+      color: #000;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .buy-btn:hover {
+      background: linear-gradient(135deg, #4B0082, #5900ff);
+      color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* === BACK BUTTON === */
+    .back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px 24px ;
+  background: linear-gradient(#b07cfd, #BA8FFA);
+  color: #4B0082;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid #4B0082;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(119, 0, 255, 0.08);
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0;                /* initially hidden */
+  transform: translateX(-100%); /* start off-screen to the left */
+  animation: slideInLeft 0.7s ease forwards;
+  transition: all 0.3s ease;
+}
+
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+.back-btn:hover {
+  background: #BA8FFA;
+  color: #4B0082;
+  box-shadow: 0 6px 16px rgba(111, 0, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+
+    .slide-in-left {
+      animation: slideFromLeft 1s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    .role-card:nth-child(2) { animation-delay: 0.2s; }
+    .role-card:nth-child(3) { animation-delay: 0.4s; }
+    .role-card:nth-child(4) { animation-delay: 0.6s; }
+    .role-card:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <a href="index.html">
+    <button class="back-btn">Back to Home</button>
+  </a>
+
+  <div class="shop-container">
+    <h1> Choose Your Special Offer</h1>
+
+    <!-- Gold -->
+    <div class="role-card">
+      <h2 class="gold-role">Gold Donator</h2>
+      <ul>
+        <li>Nick Name</li>
+        <li>Premium Basic Room Access</li>
+        <li>Role: @・Premium Donator</li>
+        <li>Role: @Move Power</li>
+      </ul>
+      <p><strong>Price: 3$</strong></p>
+      <a href="https://discord.gg/EyBJufhfgH" target="_blank">
+        <button class="buy-btn">
+          <img src="https://cdn.discordapp.com/emojis/1359954584575021098.webp?size=96&animated=true" alt="" width="24">
+          Buy Now
+        </button>
+      </a>
+    </div>
+
+    <!-- Diamond -->
+    <div class="role-card">
+      <h2 class="diamond-role">Diamond Donator</h2>
+      <ul>
+        <li>Custom Nick Name</li>
+        <li>Premium VIP Room ⭐</li>
+        <li>Custom Role (2 Weeks)</li>
+        <li>Role: @・Diamond Donator・</li>
+        <li>Role: @🎖Move Power</li>
+      </ul>
+      <p><strong>Price: 5$</strong></p>
+      <a href="https://discord.gg/EyBJufhfgH" target="_blank">
+        <button class="buy-btn">
+          <img src="https://cdn.discordapp.com/emojis/1356815162421673994.webp?size=96&animated=true" alt="" width="24">
+          Buy Now
+        </button>
+      </a>
+    </div>
+
+    <!-- Premium -->
+    <div class="role-card">
+      <h2 class="premium-role">Premium Donator</h2>
+      <ul>
+        <li>Nick Name</li>
+        <li>Premium VIP Room</li>
+        <li>Role: @• Important Members</li>
+        <li>Role: @・Premium Donator・</li>
+        <li>Custom Role (1 Month)</li>
+        <li>Role: @🎖Move Power</li>
+        <li>Add 1 Custom Emoji</li>
+      </ul>
+      <p><strong>Price: 8$</strong></p>
+      <a href="https://discord.gg/EyBJufhfgH" target="_blank">
+        <button class="buy-btn">
+          <img src="https://cdn.discordapp.com/emojis/1358117760777060484.webp?size=96&animated=true" alt="" width="24">
+          Buy Now
+        </button>
+      </a>
+    </div>
+
+    <!-- Luxury -->
+    <div class="role-card">
+      <h2 class="luxury-role">Luxury Donator</h2>
+      <ul>
+        <li>Nick Name</li>
+        <li>Elite Room 💸</li>
+        <li>Custom Role</li>
+        <li>Role: @・Luxury Donator・</li>
+        <li>Role: @Protected By Owner</li>
+        <li>Role: @🎖Move Power</li>
+        <li>Role: @🎖Mute Power</li>
+        <li>Add 2 Personal Emojis</li>
+        <li>Top Donator Role for extra support</li>
+      </ul>
+      <p><strong>Price: 15$</strong></p>
+      <a href="https://discord.gg/EyBJufhfgH" target="_blank">
+        <button class="buy-btn">
+          <img src="https://cdn.discordapp.com/emojis/1353170559894163516.webp?size=96&animated=true" alt="" width="24">
+          Buy Now
+        </button>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
